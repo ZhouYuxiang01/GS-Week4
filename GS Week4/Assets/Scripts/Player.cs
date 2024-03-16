@@ -11,7 +11,10 @@ public class PlayerController : MonoBehaviour
     private bool facingRight = true;
     public PhysicsMaterial2D friction; 
     public PhysicsMaterial2D noFriction;
-    //private Animator animator;
+    private Animator animator;
+    public Transform bottom;
+    public AudioClip jumpSound;
+    public GameManager gameManager;
     //public string deathSceneName = "DeathScene"; 
     //public string victorySceneName = "VictoryScene";
 
@@ -20,13 +23,13 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         GetComponent<Rigidbody2D>().sharedMaterial = friction;
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
         isGrounded = rb.IsTouchingLayers(groundLayer);
-        //animator.SetBool("isGrounded", isGrounded);
+        animator.SetBool("isGrounded", isGrounded);
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
@@ -41,7 +44,7 @@ public class PlayerController : MonoBehaviour
         // Horizontal movement
         float moveInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
-        //animator.SetFloat("horizontal",moveInput);
+        animator.SetFloat("horizontal",moveInput);
         // Flip Mario sprite if necessary
         if (moveInput > 0 && !facingRight)
         {
