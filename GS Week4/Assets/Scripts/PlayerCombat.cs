@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
@@ -8,33 +10,21 @@ public class PlayerCombat : MonoBehaviour
     public LayerMask enemyLayer; // Layer mask to define what is considered as an enemy
     public float haloRadius = 5f; // Radius of the player's halo
     private Animator animator;
+    private PolygonCollider2D hitbox;
+    public float time;
 
     void Start()
     {
         currentHealth = maxHealth; // Initialize current health to maximum health
+        animator = GetComponent<Animator>();
+        hitbox = GetComponent<PolygonCollider2D>();
     }
 
     void Update()
     {
-        // Check for player attack input
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            animator.SetBool("isAttack", true);
-            Attack();
-        }
-    }
 
-    void Attack()
-    {
-        // Detect enemies within the halo radius
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, haloRadius, enemyLayer);
+        //Attack();
 
-        // Damage each enemy within the halo
-        foreach (Collider2D enemy in hitEnemies)
-        {
-
-            enemy.GetComponent<EnemyHealth>().TakeDamage(attackDamage);
-        }
     }
 
     public void TakeDamage(int damage)
@@ -64,13 +54,5 @@ public class PlayerCombat : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, haloRadius);
     }
 
-    // Check for enemies entering the player's halo
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            // Attack enemies within the halo when they stay inside it
-            Attack();
-        }
-    }
+
 }
