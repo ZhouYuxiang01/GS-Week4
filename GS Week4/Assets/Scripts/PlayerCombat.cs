@@ -7,6 +7,7 @@ public class PlayerCombat : MonoBehaviour
     public int attackDamage = 10; // Damage dealt by the player's attack
     public LayerMask enemyLayer; // Layer mask to define what is considered as an enemy
     public float haloRadius = 5f; // Radius of the player's halo
+    private Animator animator;
 
     void Start()
     {
@@ -18,6 +19,7 @@ public class PlayerCombat : MonoBehaviour
         // Check for player attack input
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            animator.SetBool("isAttack", true);
             Attack();
         }
     }
@@ -30,6 +32,7 @@ public class PlayerCombat : MonoBehaviour
         // Damage each enemy within the halo
         foreach (Collider2D enemy in hitEnemies)
         {
+
             enemy.GetComponent<EnemyHealth>().TakeDamage(attackDamage);
         }
     }
@@ -41,12 +44,14 @@ public class PlayerCombat : MonoBehaviour
         // Check if player's health is depleted
         if (currentHealth <= 0)
         {
-            Die();
+            isDied();
         }
     }
 
-    void Die()
+    void isDied()
     {
+        // Show died animation when player is died
+        animator.SetBool("isDied", true);
         // Perform actions upon player's death, such as game over or respawn
         Debug.Log("Player died.");
         // You can add more functionality here, like restarting the game or showing a game over screen.
