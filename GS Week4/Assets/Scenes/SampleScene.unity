@@ -1876,7 +1876,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  damage: 1
+  damage: 50
   flashTime: 0.1
   isEnemyDied: {fileID: 660329269}
   speed: 10
@@ -3692,6 +3692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533efd6efdc3c1d4787ad932be2dd766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  winPanel: {fileID: 0}
 --- !u!1 &1869828660
 GameObject:
   m_ObjectHideFlags: 0
