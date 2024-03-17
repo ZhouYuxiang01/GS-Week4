@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour
 {
     public int health;
-    public int damage;
+    public int damage = 5;
     public float flashTime;
     public Animator isEnemyDied;
 

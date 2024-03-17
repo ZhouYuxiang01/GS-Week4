@@ -411,6 +411,7 @@ GameObject:
   - component: {fileID: 271540064}
   - component: {fileID: 271540069}
   - component: {fileID: 271540070}
+  - component: {fileID: 271540071}
   m_Layer: 6
   m_Name: Main_Player
   m_TagString: Player
@@ -615,11 +616,34 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 100
   attackDamage: 1
-  enemyLayer:
+  enemy:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 192
   haloRadius: 5
-  time: 0
+  animator: {fileID: 0}
+  flashDuration: 0.1
+--- !u!114 &271540071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271540063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a048a53af49c01c4d915db91ae2d7fee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  animator: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  flashDuration: 0.1
+  originalColor:
+    r: 0
+    g: 0
+    b: 0
+    a: 0
 --- !u!1 &313916037
 GameObject:
   m_ObjectHideFlags: 0
@@ -1876,7 +1900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  damage: 50
+  damage: 30
   flashTime: 0.1
   isEnemyDied: {fileID: 660329269}
   speed: 10

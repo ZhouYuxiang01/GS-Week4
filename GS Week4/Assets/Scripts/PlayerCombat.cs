@@ -7,22 +7,23 @@ public class PlayerCombat : MonoBehaviour
     public int maxHealth = 100; // Maximum health of the player
     public int currentHealth; // Current health of the player
     public int attackDamage = 10; // Damage dealt by the player's attack
-    public LayerMask enemyLayer; // Layer mask to define what is considered as an enemy
+    public LayerMask enemy; // Layer mask to define what is considered as an enemy
     public float haloRadius = 5f; // Radius of the player's halo
-    private Animator animator;
-    private PolygonCollider2D hitbox;
-    public float time;
+    public Animator animator;
+    private SpriteRenderer spriteRenderer;
+    public float flashDuration = 0.1f; // 受伤闪烁的持续时间
+    private Color originalColor;
 
     void Start()
     {
         currentHealth = maxHealth; // Initialize current health to maximum health
         animator = GetComponent<Animator>();
-        hitbox = GetComponent<PolygonCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
     }
 
     void Update()
     {
-
         //Attack();
 
     }
@@ -30,13 +31,23 @@ public class PlayerCombat : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage; // Reduce player's health by the amount of damage taken
-
+        StartCoroutine(FlashColor(flashDuration));
         // Check if player's health is depleted
         if (currentHealth <= 0)
         {
             isDied();
         }
     }
+
+    IEnumerator FlashColor(float duration)
+    {
+        // 受伤时变为红色
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(duration);
+
+        spriteRenderer.color = originalColor;
+    }
+
 
     void isDied()
     {
@@ -45,6 +56,7 @@ public class PlayerCombat : MonoBehaviour
         // Perform actions upon player's death, such as game over or respawn
         Debug.Log("Player died.");
         // You can add more functionality here, like restarting the game or showing a game over screen.
+        Destroy(gameObject);
     }
 
     // Visualize halo radius in the editor
