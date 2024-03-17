@@ -6,8 +6,9 @@ public class EnemyPatrol : Enemy
 {
     public float speed;
     public float waitTime;
-    public Transform[] moveSpots;
+    public float patrolDistance; // 新增：自定义的巡逻距离
 
+    private Transform[] moveSpots; // 修改为私有变量
     private int i = 0;
     private bool movingRight = true;
     private float wait;
@@ -17,6 +18,9 @@ public class EnemyPatrol : Enemy
     {
         base.Start();
         wait = waitTime;
+
+        // 动态创建巡逻点
+        InitializeMoveSpots();
     }
 
     // Update is called once per frame
@@ -40,16 +44,7 @@ public class EnemyPatrol : Enemy
                     movingRight = true;
                 }
 
-                if (i == 0)
-                {
-
-                    i = 1;
-                }
-                else
-                {
-
-                    i = 0;
-                }
+                i = i == 0 ? 1 : 0; // 简化的切换逻辑
 
                 waitTime = wait;
             }
@@ -58,5 +53,18 @@ public class EnemyPatrol : Enemy
                 waitTime -= Time.deltaTime;
             }
         }
+    }
+
+    void InitializeMoveSpots()
+    {
+        moveSpots = new Transform[2]; // 左右两个点
+        GameObject leftSpot = new GameObject("LeftPatrolPoint");
+        GameObject rightSpot = new GameObject("RightPatrolPoint");
+
+        leftSpot.transform.position = new Vector2(transform.position.x - patrolDistance, transform.position.y);
+        rightSpot.transform.position = new Vector2(transform.position.x + patrolDistance, transform.position.y);
+
+        moveSpots[0] = leftSpot.transform;
+        moveSpots[1] = rightSpot.transform;
     }
 }

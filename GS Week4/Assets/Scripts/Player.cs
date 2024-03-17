@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             GetComponent<Rigidbody2D>().sharedMaterial = noFriction;
+            GetComponent<AudioSource>().PlayOneShot(jumpSound);
+
         }
         //if (transform.position.y < attackBottom.position.y)
         //{

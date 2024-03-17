@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
+    public GameManager gameManager;
     public int maxHealth = 100; // Maximum health of the player
     public int currentHealth; // Current health of the player
     public int attackDamage = 10; // Damage dealt by the player's attack
@@ -12,6 +13,7 @@ public class PlayerCombat : MonoBehaviour
     public Animator animator;
     private SpriteRenderer spriteRenderer;
     public float flashDuration = 0.1f; // 受伤闪烁的持续时间
+    public AudioClip hurtSound;
     private Color originalColor;
 
     void Start()
@@ -32,6 +34,7 @@ public class PlayerCombat : MonoBehaviour
     {
         currentHealth -= damage; // Reduce player's health by the amount of damage taken
         StartCoroutine(FlashColor(flashDuration));
+        GetComponent<AudioSource>().PlayOneShot(hurtSound);
         // Check if player's health is depleted
         if (currentHealth <= 0)
         {
@@ -53,8 +56,10 @@ public class PlayerCombat : MonoBehaviour
     {
         // Show died animation when player is died
         animator.SetBool("isDied", true);
+        gameManager.GameOver();
         // Perform actions upon player's death, such as game over or respawn
         Debug.Log("Player died.");
+
         // You can add more functionality here, like restarting the game or showing a game over screen.
         Destroy(gameObject);
     }

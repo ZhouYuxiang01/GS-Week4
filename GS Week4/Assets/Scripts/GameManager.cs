@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject gameOverPanel;
-    public GameObject winPanel;
+    public cameracontroller cameracontroller;
 
     // Start is called before the first frame update
     void Start()
@@ -22,20 +21,21 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        gameOverPanel.SetActive(true);
-        Time.timeScale = 00.0f;
+        Debug.Log("Game Over");
+        Time.timeScale = 0.0f;
+        cameracontroller.SwitchToThirdCamera();
     }
 
     public void GameWin()
     {
-        winPanel.SetActive(true);
+        cameracontroller.SwitchToFourthCamera();
     }
 
 
 
     public void Restart()
     {
-        SceneManager.LoadScene("Level 1");
+        SceneManager.LoadScene("SampleScene");
 
     }
 
