@@ -27,7 +27,7 @@ public class PlayerCombat : MonoBehaviour
     void Update()
     {
         //Attack();
-
+        Restart();
     }
 
     public void TakeDamage(int damage)
@@ -51,6 +51,14 @@ public class PlayerCombat : MonoBehaviour
         spriteRenderer.color = originalColor;
     }
 
+    void Restart()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Debug.Log("R");
+            gameManager.Restart();
+        }
+    }
 
     void isDied()
     {

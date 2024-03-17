@@ -8,6 +8,7 @@ public class PlayerAttack : MonoBehaviour
     private PolygonCollider2D hitbox;
     public int attackDamage = 10;
     public float time;
+    public AudioClip AttackSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +31,7 @@ public class PlayerAttack : MonoBehaviour
 
             animator.SetTrigger("attack");
             StartCoroutine(disableHitBox());
-
+            GetComponent<AudioSource>().PlayOneShot(AttackSound);
         } 
 
     }

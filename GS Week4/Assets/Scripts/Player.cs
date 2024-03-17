@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
         //    transform.Translate(Vector2.up * 2);
         //    gameManager.GameOver();
         //}
-        }
+     }
     
 
     private void FixedUpdate()
