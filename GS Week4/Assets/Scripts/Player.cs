@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public PhysicsMaterial2D friction; 
     public PhysicsMaterial2D noFriction;
     private Animator animator;
-    public Transform attackBottom;
+    //public Transform attackBottom;
     public AudioClip jumpSound;
     public GameManager gameManager;
     //public string deathSceneName = "DeathScene"; 
@@ -35,12 +35,12 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             GetComponent<Rigidbody2D>().sharedMaterial = noFriction;
         }
-        if (transform.position.y < attackBottom.position.y)
-        {
-            animator.SetBool("isDied", true);
-            transform.Translate(Vector2.up * 2);
-            gameManager.GameOver();
-        }
+        //if (transform.position.y < attackBottom.position.y)
+        //{
+        //    animator.SetBool("isDied", true);
+        //    transform.Translate(Vector2.up * 2);
+        //    gameManager.GameOver();
+        //}
         }
     
 

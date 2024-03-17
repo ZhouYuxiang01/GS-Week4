@@ -23,8 +23,7 @@ public class EnemyPatrol : Enemy
     public new void Update()
     {
         base.Update();
-        transform.position =
-            Vector2.MoveTowards(transform.position, moveSpots[i].position, speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, moveSpots[i].position, speed * Time.deltaTime);
 
         if (Vector2.Distance(transform.position, moveSpots[i].position) < 0.1f)
         {
@@ -32,12 +31,12 @@ public class EnemyPatrol : Enemy
             {
                 if (movingRight == true)
                 {
-                    transform.eulerAngles = new Vector3(0, -180, 0);
+                    transform.eulerAngles = new Vector3(0, 0, 0);
                     movingRight = false;
                 }
                 else
                 {
-                    transform.eulerAngles = new Vector3(0, 0, 0);
+                    transform.eulerAngles = new Vector3(0, -180, 0);
                     movingRight = true;
                 }
 
