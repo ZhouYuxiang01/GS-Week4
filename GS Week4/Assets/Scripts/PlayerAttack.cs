@@ -18,6 +18,7 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         Attack();
     }
 
@@ -26,10 +27,11 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             hitbox.enabled = true;
+
             animator.SetTrigger("attack");
             StartCoroutine(disableHitBox());
 
-        }
+        } 
 
     }
 

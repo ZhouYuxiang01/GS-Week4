@@ -7,6 +7,7 @@ public abstract class Enemy : MonoBehaviour
     public int health;
     public int damage;
     public float flashTime;
+    public Animator isEnemyDied;
 
     private SpriteRenderer sr;
     private Color originalColor;
@@ -25,6 +26,8 @@ public abstract class Enemy : MonoBehaviour
     {
         if (health <= 0)
         {
+
+            EnemyDeath();
             Destroy(gameObject);
         }
     }
@@ -45,6 +48,12 @@ public abstract class Enemy : MonoBehaviour
     {
         sr.color = originalColor;
     }
+
+    void EnemyDeath()
+    {
+        isEnemyDied.SetBool("isEnemyDied", true);
+    }
+
 
     void OnTriggerEnter2D(Collider2D other)
     {
