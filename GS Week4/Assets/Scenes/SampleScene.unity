@@ -412,7 +412,7 @@ GameObject:
   - component: {fileID: 271540069}
   - component: {fileID: 271540070}
   m_Layer: 6
-  m_Name: Main_Player_stand_0
+  m_Name: Main_Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -618,7 +618,7 @@ MonoBehaviour:
   attackDamage: 1
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   haloRadius: 5
   time: 0
 --- !u!1 &313916037
@@ -1363,7 +1363,7 @@ GameObject:
   - component: {fileID: 567094455}
   - component: {fileID: 567094456}
   - component: {fileID: 567094457}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
