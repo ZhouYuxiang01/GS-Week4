@@ -9,7 +9,6 @@ public class cameracontroller : MonoBehaviour
 
     void Start()
     {
-        // 初始化时，除了第一个相机外，禁用所有其他相机
         foreach (Camera cam in cameras)
         {
             cam.gameObject.SetActive(false);
@@ -21,16 +20,36 @@ public class cameracontroller : MonoBehaviour
         }
     }
 
-    public void SwitchCamera()
+    public void SwitchToSecondCamera()
     {
-        currentCameraIndex++;
-        if (currentCameraIndex >= cameras.Length)
+        if (cameras.Length >= 3)
         {
-            currentCameraIndex = 0;
+            ActivateCamera(1);
         }
+    }
+
+    public void SwitchToThirdCamera()
+    {
+        if (cameras.Length >= 3)
+        {
+            ActivateCamera(2);
+        }
+    }
+
+    public void SwitchToFourthCamera()
+    {
+        if (cameras.Length >= 4)
+        {
+            ActivateCamera(3);
+        }
+    }
+
+    private void ActivateCamera(int index)
+    {
         for (int i = 0; i < cameras.Length; i++)
         {
-            cameras[i].gameObject.SetActive(i == currentCameraIndex);
+            cameras[i].gameObject.SetActive(i == index);
         }
+        currentCameraIndex = index;
     }
 }
